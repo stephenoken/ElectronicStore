@@ -2,6 +2,7 @@ package com.store
 
 class Stock {
 	static belongsTo = [manufacturer:Manufacturer, category:Category]
+	static hasMany = [reviews:Review]
 	
     static constraints = {
 		title(unique:true)

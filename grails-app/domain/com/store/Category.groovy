@@ -5,4 +5,8 @@ class Category {
     static constraints = {
     }
 	String categoryName
+	
+	String toString(){
+		"${categoryName}"
+	}
 }

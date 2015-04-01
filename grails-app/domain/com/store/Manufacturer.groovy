@@ -4,5 +4,9 @@ class Manufacturer {
 	static hasMany = [stocks:Stock]
     static constraints = {
     }
-	String categoryName
+	String manufacturerName
+	
+	String toString(){
+		"${manufacturerName}"
+	}
 }
