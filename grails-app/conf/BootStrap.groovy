@@ -1,10 +1,13 @@
-import com.store.AppUser;
+import com.store.AppUser
+import com.store.ShoppingCart
 
 class BootStrap {
 
     def init = { servletContext ->
+		
 		def user = AppUser.findOrSaveWhere(fullName:"Stephen O'Kennedy", email:"Stephenoken@gmail.com", 
-			address:"3 Clonasleigh", password:"pwd")
+			password:"pwd")
+		def cart = ShoppingCart.findOrSaveWhere(address:"3 Clonasleigh", user:user)
     }
     def destroy = {
     }

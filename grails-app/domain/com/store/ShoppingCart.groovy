@@ -5,4 +5,5 @@ class ShoppingCart {
 	static hasMany = [stocks:Stock]
     static constraints = {
     }
+	String address
 }
