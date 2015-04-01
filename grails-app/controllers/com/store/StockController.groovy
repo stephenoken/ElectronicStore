@@ -16,13 +16,20 @@ class StockController {
     }
 
     def show(Stock stockInstance) {
-        respond stockInstance
+        respond stockInstance, model:[]
     }
+	
+	def displayImage = {
+		Stock stock = Stock.get(params.id);
+		byte[] image = stock.filePayload
+		response.outputStream << image
+	}
 
     def create() {
         respond new Stock(params)
     }
 
+	def hdImageService
     @Transactional
     def save(Stock stockInstance) {
         if (stockInstance == null) {
@@ -34,8 +41,17 @@ class StockController {
             respond stockInstance.errors, view:'create'
             return
         }
-
-        stockInstance.save flush:true
+		println params
+		def uploadedFile = params.filePayload
+		try{
+			byte[] uploadedFileBytes = hdImageService.scale(uploadedFile.getInputStream(),500,500)
+			stockInstance.filePayload = uploadedFileBytes
+			
+		}catch(Exception e){
+			println e
+		}
+		stockInstance.save flush:true
+		
 
         request.withFormat {
             form multipartForm {
