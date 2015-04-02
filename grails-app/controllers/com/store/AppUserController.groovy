@@ -1,6 +1,6 @@
 package com.store
 
-class AppUserController {
+class AppUserController{
 	def scaffold = AppUser
 	
 	def login(){}
