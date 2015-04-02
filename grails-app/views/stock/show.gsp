@@ -32,12 +32,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${stockInstance?.filePayload}">
+				<!--
 				<li class="fieldcontain">
 					<span id="filePayload-label" class="property-label"><g:message code="stock.filePayload.label" default="File Payload" /></span>
 					<img class="Photo" src="${createLink(controller:'stock', action:'displayImage', id:stockInstance.id)}" />
-				</li>
-				</g:if>
+				</li>-->
 			
 				<g:if test="${stockInstance?.category}">
 				<li class="fieldcontain">

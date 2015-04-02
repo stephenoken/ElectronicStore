@@ -2,7 +2,7 @@ package com.store
 
 class ShoppingCart {
 	static belongsTo = [user:AppUser]
-	static hasMany = [stocks:Stock]
+	static hasMany = [items:CartItem]
     static constraints = {
     }
 	String address
