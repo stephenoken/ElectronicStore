@@ -6,7 +6,7 @@ class AppUserController {
 	def login(){}
 	
 	def authenticate(){
-		def user = AppUser.findByEmailAndPassword(params.email, params.password)
+		def user = AppUser.findByEmailIlikeAndPassword(params.email, params.password)//The ILike makes it case insensitive
 		if(user != null){
 			session.user = user 
 			flash.message = "Hello ${user.fullName}!"
