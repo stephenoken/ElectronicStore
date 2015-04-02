@@ -10,7 +10,8 @@ class Stock {
     }
 	
 	String title;
-	BigDecimal price;
+	double price;
+	int stockLevel; 
 //	byte[] filePayload
 	
 }

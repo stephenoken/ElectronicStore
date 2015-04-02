@@ -6,4 +6,5 @@ class ShoppingCart {
     static constraints = {
     }
 	String address
+	double totalPrice
 }
