@@ -19,6 +19,7 @@
 					</g:each>
 				</ul>
 			</div>
+			<a href="showCategory/id=laptops">Show Laptop</a>
 		</div>
 	</body>
 </html>
