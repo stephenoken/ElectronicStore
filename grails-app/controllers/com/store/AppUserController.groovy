@@ -10,7 +10,7 @@ class AppUserController{
 		if(user != null){
 			session.user = user 
 			flash.message = "Hello ${user.fullName}!"
-			redirect(controller:"stock", action:"index")
+			redirect( action:"home")
 		}else{
 			flash.message= "Sorry, ${params.email}. Please try again!"
 			redirect(action:"login")
@@ -21,5 +21,10 @@ class AppUserController{
 		flash.message="Goodbye ${session.user.fullName}"
 		session.user = null
 		redirect(controller:"stock", action:"index")
+	}
+	
+	def home(){
+		AppUser user = AppUser.get(session.user.id)
+		render (view:"home.gsp", model:[userInsatnce:user])
 	}
 }

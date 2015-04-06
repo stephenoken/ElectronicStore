@@ -7,7 +7,9 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class CategoryController extends Controller{
-
+	
+	def beforeInterceptor=[action:this.&auth]
+	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
