@@ -7,9 +7,10 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
-*= require main
-*= require mobile
 *= require ../bower_components/bootstrap/dist/css/bootstrap.min.css 
+*= require ../bower_components/bootstrap-material-design/dist/css/material.min.css
+*= require ../bower_components/bootstrap-material-design/dist/css/ripples.min.css
+*= require ../bower_components/bootstrap-material-design/dist/css/roboto.min.css
 *= require_self
 *= require custom-styles.less
 */

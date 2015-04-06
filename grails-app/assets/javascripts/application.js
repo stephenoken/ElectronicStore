@@ -8,6 +8,8 @@
 //
 //= require ../bower_components/jquery/dist/jquery.min.js
 //= require ../bower_components/bootstrap/dist/js/bootstrap.min.js
+//= require ../bower_components/bootstrap-material-design/dist/js/material.min.js
+//= require ../bower_components/bootstrap-material-design/dist/js/ripples.min.js
 //= require_tree .
 //= require_self
 
