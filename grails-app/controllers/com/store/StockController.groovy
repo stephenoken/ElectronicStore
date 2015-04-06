@@ -104,4 +104,25 @@ class StockController extends Controller{
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def addToBasket(Stock stockInstance){
+		if(session.user !=null){
+			println session.user
+			AppUser  user = AppUser.get(session.user.id)
+			println user.shoppingCarts
+			ShoppingCart sct = user.shoppingCarts.getAt(0)
+			println sct
+			if(stockInstance.stockLevel > 0){
+				CartItem ct = new CartItem(stock:stockInstance,shoppingCart:sct)
+				ct.save flush:true
+				stockInstance.stockLevel --
+				stockInstance.save flush:true
+				render "Item added to your cart"
+			}else{
+				render "Item not in stock"
+			}
+		}else{
+			render "Must be signed in to pruchease "
+		}
+	}
 }
