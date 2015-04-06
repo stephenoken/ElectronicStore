@@ -117,6 +117,8 @@ class StockController extends Controller{
 				ct.save flush:true
 				stockInstance.stockLevel --
 				stockInstance.save flush:true
+				sct.totalPrice += stockInstance.price
+				sct.save flush:true
 				render "Item added to your cart"
 			}else{
 				render "Item not in stock"

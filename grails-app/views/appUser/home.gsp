@@ -5,17 +5,43 @@
 </head>
 
 <body>
-	<h1> Hello ${userInsatnce }</h1>
-	<button class="btn btn-primary">Test</button>
-	<div class="well bs-component col-md-5 col-md-offset-1">
-		<g:form url="[resource:shoppingCartInstance, action:'save',controller:'shoppingCart']" controller="shoppingCart" >
-			<fieldset class="form">
-				<g:render template="/shoppingCart/form"/>
-			</fieldset>
-			<fieldset class="buttons">
-				<g:submitButton name="create" class="btn btn-warning" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-			</fieldset>
-		</g:form>
+	<h1 class="col-md-offset-1"> Hello ${userInsatnce }</h1>
+	<g:if test="${flash.message }">
+		<div class="panel panel-warning col-md-12 row">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">Shopping Cart</h3>
+		    </div>
+		    <div class="panel-body">
+		        ${flash.message }
+		    </div>
+		</div>
+	</g:if>
+	<div class="row">
+		<g:if test="${ userInsatnce.shoppingCarts}"> 
+			<g:render template="showCart"></g:render>
+		</g:if>
+		<g:else>
+			<div class="well bs-component col-md-4 col-md-offset-1">
+				<g:form action="create" controller="shoppingCart" >
+					<fieldset class="form">
+						<g:render template="/shoppingCart/form"/>
+					</fieldset>
+					<fieldset class="buttons">
+						<g:submitButton name="create" class="btn btn-warning" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					</fieldset>
+				</g:form>
+			</div>
+		</g:else>
+		<div class="well bs-component col-md-4 col-md-offset-1">
+			<g:form url="[resource:shoppingCartInstance, action:'save',controller:'shoppingCart']" controller="shoppingCart" >
+				<fieldset class="form">
+					<g:render template="/shoppingCart/form"/>
+				</fieldset>
+				<fieldset class="buttons">
+					<g:submitButton name="create" class="btn btn-warning" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				</fieldset>
+			</g:form>
+		</div>
 	</div>
 </body>
 </html>

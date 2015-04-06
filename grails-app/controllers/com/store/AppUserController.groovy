@@ -25,7 +25,7 @@ class AppUserController{
 	
 	def home(){
 		AppUser user = AppUser.get(session.user.id)
-		render (view:"home.gsp", model:[userInsatnce:user])
+		render (view:"home.gsp", model:[userInsatnce:user,shoppingCartInstance:user.shoppingCarts[0]])
 	}
 	
 	def auth(){

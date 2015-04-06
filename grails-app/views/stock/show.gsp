@@ -81,6 +81,12 @@
 					
 				</li>
 				</g:if>
+				<g:else>
+					<li class="fieldcontain">
+						<span id="stockLevel-label" class="property-label"><g:message code="stock.stockLevel.label" default="Stock Level" /></span>
+						<span class="property-value" aria-labelledby="stockLevel-label"> Not in stock</span>
+					</li>
+				</g:else>
 			
 			</ol>
 			<g:form url="[resource:stockInstance, action:'delete']" method="DELETE">
