@@ -51,9 +51,20 @@
 	                			</ul>
 							</li>
 							<li>
-								<g:link controller="Tournament">
-									Tournament
-								</g:link>
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		                    		Categories<b class="caret"></b>
+		                     	</a>		 	
+			                    <ul role="menu" class="dropdown-menu">
+			                        <li>
+										<g:link class="create" action="index" controller="master" params="[cntlr:'category',function:'index']">
+	                						Categories
+	                					</g:link>
+	                					<g:link class="create" action="index" controller="master" params="[cntlr:'category',function:'create']">
+											Add new Category
+										</g:link>
+	                					
+	                				</li>
+	                			</ul>
 							</li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
