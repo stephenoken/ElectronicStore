@@ -97,7 +97,7 @@
 		<g:message code="stock.stockLevel.label" default="Stock Level" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="stockLevel" type="number" value="${ stockInstance.stockLevel}" required=""/>
+	<g:field name="stockLevel" type="number" value="" required=""/>
 
 </div>
 

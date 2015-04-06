@@ -43,6 +43,10 @@
 										<a href="../stock-index=">
 	                						Stock List
 	                					</a>
+	                					<g:link class="create" action="index" controller="master" params="[cntlr:'stock',function:'create']">
+											New Stock Item
+										</g:link>
+	                					
 	                				</li>
 	                			</ul>
 							</li>
