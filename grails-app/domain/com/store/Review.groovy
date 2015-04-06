@@ -1,7 +1,7 @@
 package com.store
 
 class Review {
-	static belongsTo = [stock:Stock]
+	static belongsTo = [stock:Stock, author:AppUser]
 	String review
 	int rating
 	
@@ -9,5 +9,6 @@ class Review {
 		review type:"text"
 	}
     static constraints = {
+		rating( size: 0..5)
     }
 }

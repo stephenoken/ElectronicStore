@@ -8,7 +8,7 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div id="show-stock" class="well bs-component col-md-6 col-md-offset-3" role="main">
+		<div id="show-stock" class="row well bs-component col-md-6 col-md-offset-3" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
@@ -73,17 +73,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${stockInstance?.reviews}">
-				<li class="fieldcontain">
-					<span id="reviews-label" class="property-label"><g:message code="stock.reviews.label" default="Reviews" /></span>
-					
-						<g:each in="${stockInstance.reviews}" var="r">
-						<span class="property-value" aria-labelledby="reviews-label"><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${stockInstance?.stockLevel}">
 				<li class="fieldcontain">
 					<span id="stockLevel-label" class="property-label"><g:message code="stock.stockLevel.label" default="Stock Level" /></span>
@@ -104,5 +93,20 @@
 				</fieldset>
 			</g:form>
 		</div>
+		<g:if test="${stockInstance?.reviews}">
+			<div class="row col-md-6 col-md-offset-3">
+				
+				<h1>Reviews</h1>					
+				<g:each in="${stockInstance.reviews}" var="r">
+					<div class="row well bs-component col-md-12">
+						<blockquote class="pull-right">
+							<p>${r.review }</p>
+							<small>Review by <cite title="Source Title">${r.author }</cite></small>
+						</blockquote>
+						<%--<span class="property-value" aria-labelledby="reviews-label"><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>--%>
+					</div>
+				</g:each>
+			</div>
+		</g:if>
 	</body>
 </html>

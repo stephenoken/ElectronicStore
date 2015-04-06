@@ -2,7 +2,7 @@ package com.store
 
 class AppUserController{
 	def scaffold = AppUser
-	
+	def beforeInterceptor=[action:this.&auth,except:["login","authenticate","logout","create","save"]] 
 	def login(){}
 	
 	def authenticate(){
@@ -26,5 +26,12 @@ class AppUserController{
 	def home(){
 		AppUser user = AppUser.get(session.user.id)
 		render (view:"home.gsp", model:[userInsatnce:user])
+	}
+	
+	def auth(){
+		if(!session.user){
+			redirect(controller:'appUser', action:'login')
+			return false
+		}
 	}
 }

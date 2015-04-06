@@ -1,8 +1,9 @@
 import com.store.AppUser
-import com.store.Category;
-import com.store.Manufacturer;
+import com.store.Category
+import com.store.Manufacturer
+import com.store.Review
 import com.store.ShoppingCart
-import com.store.Stock;
+import com.store.Stock
 
 class BootStrap {
 
@@ -34,6 +35,8 @@ class BootStrap {
 		def iMac = Stock.findOrSaveWhere(title:"iMac", price:iMacPrice,manufacturer:appleManufacturer,category:desktopCategory,stockLevel:5)
 		def samsungDesktop = Stock.findOrSaveWhere(title:"ATIV One 7 Curved (27.0” LED Full HD / Core™ i5)", price:samsungDesktopPrice,manufacturer:samsungManufacturer,category:desktopCategory,stockLevel:7)
 		def lennovoDesktop = Stock.findOrSaveWhere(title:"B50", price:lennovoDesktopPrice,manufacturer:lenovoManufacturer,category:desktopCategory,stockLevel:9)
+		//Reviews
+		def review1 = Review.findOrSaveWhere(stock:macbookPro,author:user,review:"It's great",rating:5)
 		
     }
     def destroy = {
