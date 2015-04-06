@@ -13,6 +13,8 @@ class MasterController {
 		switch(controllerParam){
 			case "category": controller = new CategoryController()
 			break
+			case "stock": controller = new StockController()
+			break
 			//case "": controller
 			default: render "Resource Unavailable"
 		}

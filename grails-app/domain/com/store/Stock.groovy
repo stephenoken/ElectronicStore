@@ -14,4 +14,8 @@ class Stock {
 	int stockLevel; 
 //	byte[] filePayload
 	
+	String toString(){
+		"${title}"
+	}
+	
 }

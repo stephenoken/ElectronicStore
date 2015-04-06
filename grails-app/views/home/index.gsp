@@ -20,6 +20,7 @@
 				</ul>
 			</div>
 			<a href="showCategory/id=laptops">Show Laptop</a>
+			<a href="stock-index=">Visit Store</a>
 		</div>
 	</body>
 </html>
