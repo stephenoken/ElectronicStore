@@ -9,5 +9,7 @@
 *
 *= require main
 *= require mobile
+*= require ../bower_components/bootstrap/dist/css/bootstrap.min.css 
 *= require_self
+*= require custom-styles.less
 */

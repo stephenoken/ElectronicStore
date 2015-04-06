@@ -115,3 +115,4 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+grails.assets.less.compiler = 'less4j'

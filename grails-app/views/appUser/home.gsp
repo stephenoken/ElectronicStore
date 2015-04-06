@@ -6,5 +6,6 @@
 
 <body>
 	<h1> Hello ${userInsatnce }</h1>
+	<button class="btn btn-primary">Test</button>
 </body>
 </html>
