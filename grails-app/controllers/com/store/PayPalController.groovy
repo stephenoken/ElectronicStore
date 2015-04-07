@@ -13,7 +13,6 @@ class PayPalController extends PaymentStrategy{
 		AppUser user = AppUser.get(session.user.id)
 		String emailId = params.emailId
 		String password = params.password
-		println emailId + password
 		PayPal pp = new PayPal(emailId:emailId,password:password, user:user)
 		pp.save flush:true
 		flash.message="You've set up your Paypal Account"

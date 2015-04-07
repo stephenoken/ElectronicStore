@@ -1,7 +1,7 @@
 package com.store
 
 class CreditCardController extends PaymentStrategy{
-	//def scaffold = true
+	def scaffold = true
    // def index() { }
 	def create(){
 		AppUser user = AppUser.get(session.user.id)

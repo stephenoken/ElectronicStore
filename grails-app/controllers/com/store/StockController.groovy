@@ -6,7 +6,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class StockController extends Controller{
+class StockController extends Controller implements Iterator{
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -130,4 +130,10 @@ class StockController extends Controller{
 				redirect (controller:"appUser",action:"login")
 		}
 	}
+
+	def searchTitle() {
+		
+	}
+	
+	
 }
