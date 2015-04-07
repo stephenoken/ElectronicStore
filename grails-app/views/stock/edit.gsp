@@ -22,7 +22,7 @@
 			<g:form url="[resource:stockInstance, action:'update', controller:'stock']" method="PUT" >
 				<g:hiddenField name="version" value="${stockInstance?.version}" />
 				<fieldset class="form">
-					<g:render template="../stock/form"/>
+					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="btn btn-info" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

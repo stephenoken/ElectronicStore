@@ -91,7 +91,7 @@
 			</ol>
 			<g:form url="[resource:stockInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
-					<g:link controller="master" params="[cntlr:'stock',function:'edit',instanceId:stockInstance.id]" class="btn btn-info">
+					<g:link action="edit" id="${stockInstance.id }" class="btn btn-info">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
 					<g:link class="btn btn-warning" controller="stock" action="addToBasket" id="${stockInstance.id }">Add to Basket</g:link>

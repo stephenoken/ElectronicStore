@@ -35,7 +35,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td>
-							<g:link action="index" controller="master" params="[cntlr:'stock',function:'show',instanceId:stockInstance.id]">
+							<g:link action="show" id="${stockInstance.id }">
 								${fieldValue(bean: stockInstance, field: "title")}
 							</g:link>
 						</td>

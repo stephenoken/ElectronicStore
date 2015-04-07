@@ -6,26 +6,21 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class StockController extends Controller{
+class StockController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		render (view:"/stock/index.gsp", model:[stockInstanceList:Stock.list(params),stockInstanceCount: Stock.count()])
+        respond Stock.list(params), model:[stockInstanceCount: Stock.count()]
     }
 
-    def show(String instanceId) {
-		Stock s = Stock.get(instanceId)
-		render (view:"/stock/show.gsp",model:[stockInstance:s])
+    def show(Stock stockInstance) {
+        respond stockInstance
     }
 
-    def edit(String instanceId) {
-		Stock s = Stock.get(instanceId)
-        render (view:"/stock/edit.gsp",model:[stockInstance:s])
-    }
     def create() {
-        render (view:"/stock/create.gsp")
+        respond new Stock(params)
     }
 
     @Transactional
@@ -45,13 +40,15 @@ class StockController extends Controller{
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.id])
-                redirect action: "index", method: "GET"
+                redirect stockInstance
             }
             '*' { respond stockInstance, [status: CREATED] }
         }
     }
 
-
+    def edit(Stock stockInstance) {
+        respond stockInstance
+    }
 
     @Transactional
     def update(Stock stockInstance) {
@@ -70,7 +67,7 @@ class StockController extends Controller{
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Stock.label', default: 'Stock'), stockInstance.id])
-                redirect action: "index", method: "GET"
+                redirect stockInstance
             }
             '*'{ respond stockInstance, [status: OK] }
         }
@@ -104,7 +101,6 @@ class StockController extends Controller{
             '*'{ render status: NOT_FOUND }
         }
     }
-	
 	def addToBasket(Stock stockInstance){
 		if(session.user !=null){
 			println session.user

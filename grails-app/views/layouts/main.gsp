@@ -41,9 +41,9 @@
 		                     	</a>		 	
 			                    <ul role="menu" class="dropdown-menu">
 			                        <li>
-										<a href="../stock-index=">
-	                						Stock List
-	                					</a>
+										<g:link controller="Stock">
+											Items
+										</g:link>
 	                					<g:link class="create" action="index" controller="master" params="[cntlr:'stock',function:'create']">
 											New Stock Item
 										</g:link>
