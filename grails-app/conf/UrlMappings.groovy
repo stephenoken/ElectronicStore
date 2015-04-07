@@ -13,9 +13,5 @@ class UrlMappings {
 		}
         "500"(view:'/error')
 		
-		"/$cntlr-$function=$instanceId?"{
-			controller="Master"
-			action="index"
-		}
 	}
 }
