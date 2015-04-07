@@ -1,4 +1,4 @@
-<div id="show-creditCard" class="well bs-component col-md-4 col-md-offset-1" role="main">
+<div id="show-creditCard" class="well bs-component col-md-12" role="main">
 			<h1>Credit Card</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>

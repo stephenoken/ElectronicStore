@@ -1,6 +1,6 @@
 package com.store
 
-class CreditCardController {
+class CreditCardController extends PaymentStrategy{
 	//def scaffold = true
    // def index() { }
 	def create(){
@@ -22,6 +22,27 @@ class CreditCardController {
 		cc.save flush:true
 		flash.message="You've set up your Credit Card"
 		redirect(controller:"AppUser",action:"home")
+		
+	}
+
+	def pay() {
+		AppUser user = AppUser.get(session.user.id)
+		CreditCard card = user.creditCards[0]
+		ShoppingCart cart = user.shoppingCarts[0]
+		if(card !=null){
+			flash.message="Basket costing €" + cart.totalPrice + " has been bought by credit card " + card.cardNumber
+			cart.totalPrice = 0
+//			for(CartItem c:cart.items){
+//				def item = c.stock
+//				def shoppingCart = c.shoppingCart
+//				println item
+//				item.discard()
+//				shoppingCart.discard()
+//				c.delete flush:true
+//			}
+			cart.save flush:true
+			redirect(controller:"AppUser",action:"home")
+		}
 		
 	}
 }

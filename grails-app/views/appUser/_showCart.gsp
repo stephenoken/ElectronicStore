@@ -39,11 +39,13 @@
 						<span class="property-value" aria-labelledby="totalPrice-label">0.0</span>
 				</li>
 				</g:else>
-			
+				
 			</ul>
 			<g:form url="[resource:shoppingCartInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:link class="btn btn-warning" contoller="appUser" action="purchases" params="[paymentType:'creditCard']">Buy CC</g:link>
+					<g:link class="btn btn-warning" contoller="appUser" action="purchases" params="[paymentType:'payPal']">Buy PP</g:link>
 				</fieldset>
 			</g:form>
 		</div>

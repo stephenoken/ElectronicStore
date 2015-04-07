@@ -1,7 +1,7 @@
 package com.store
 
 class AppUser {
-	static hasMany = [shoppingCarts:ShoppingCart, creditCards:CreditCard]
+	static hasMany = [shoppingCarts:ShoppingCart, creditCards:CreditCard, paypalAccounts:PayPal]
 	String fullName;
 	String email;
 	String password;

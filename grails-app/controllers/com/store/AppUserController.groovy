@@ -25,7 +25,8 @@ class AppUserController{
 	
 	def home(){
 		AppUser user = AppUser.get(session.user.id)
-		render (view:"home.gsp", model:[userInsatnce:user,shoppingCartInstance:user.shoppingCarts[0],creditCardInstance:user.creditCards[0]])
+		render (view:"home.gsp", model:[userInsatnce:user,shoppingCartInstance:user.shoppingCarts[0],
+			creditCardInstance:user.creditCards[0],payPalInstance:user.paypalAccounts[0]])
 	}
 	
 	def auth(){
@@ -33,5 +34,15 @@ class AppUserController{
 			redirect(controller:'appUser', action:'login')
 			return false
 		}
+	}
+	
+	def purchases(){
+		String paymentParam =  params.paymentType
+		PaymentStrategy payment;
+		if(paymentParam.equalsIgnoreCase("creditCard"))
+			payment = new CreditCardController()
+		if(paymentParam.equalsIgnoreCase("payPal"))
+			payment = new PayPalController()
+		payment.pay()
 	}
 }
