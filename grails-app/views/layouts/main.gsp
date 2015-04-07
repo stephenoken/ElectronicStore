@@ -57,10 +57,10 @@
 		                     	</a>		 	
 			                    <ul role="menu" class="dropdown-menu">
 			                        <li>
-										<g:link class="create" action="index" controller="master" params="[cntlr:'category',function:'index']">
+										<g:link controller="category">
 	                						Categories
 	                					</g:link>
-	                					<g:link class="create" action="index" controller="master" params="[cntlr:'category',function:'create']">
+	                					<g:link class="create" action="create" controller="category">
 											Add new Category
 										</g:link>
 	                					

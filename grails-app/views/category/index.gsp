@@ -26,7 +26,10 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					${categoryInstance }
 						<td>
-							<g:link action="index" controller="master" params="[cntlr:'category',function:'show',instanceId:categoryInstance]">
+							<%--<g:link action="index" controller="master" params="[cntlr:'category',function:'show',instanceId:categoryInstance]">
+								${fieldValue(bean: categoryInstance, field: "categoryName")}
+							</g:link>--%>
+							<g:link action="show" id="${ categoryInstance.id}">
 								${fieldValue(bean: categoryInstance, field: "categoryName")}
 							</g:link>
 						</td>
