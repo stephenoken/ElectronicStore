@@ -119,12 +119,15 @@ class StockController extends Controller{
 				stockInstance.save flush:true
 				sct.totalPrice += stockInstance.price
 				sct.save flush:true
-				render "Item added to your cart"
+				flash.message = "Item added to your cart"
+				redirect (controller:"appUser",action:"home")
 			}else{
-				render "Item not in stock"
+				flash.message = "Item not in stock"
+				redirect (controller:"appUser",action:"home")
 			}
 		}else{
-			render "Must be signed in to pruchease "
+				flash.message = "Must be logged in to add to basket"
+				redirect (controller:"appUser",action:"login")
 		}
 	}
 }

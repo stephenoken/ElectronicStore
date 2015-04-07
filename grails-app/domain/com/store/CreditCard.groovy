@@ -12,5 +12,6 @@ class CreditCard {
 	
 	static belongsTo = [user:AppUser]
     static constraints = {
+		cardNumber(creditCard:true)
     }
 }

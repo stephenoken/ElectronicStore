@@ -1,8 +1,5 @@
 <div id="show-shoppingCart" class="well bs-component col-md-4 col-md-offset-1" role="main">
 			<h1>Shopping Cart Details</h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
 			<ul class="property-list shoppingCart">
 			
 				<g:if test="${shoppingCartInstance?.address}">
@@ -24,7 +21,9 @@
 					
 				</li>
 				</g:if>
-			
+				<g:else>
+					Your basket is empty
+				</g:else>
 				<g:if test="${shoppingCartInstance?.totalPrice}">
 				<li class="fieldcontain">
 					<span id="totalPrice-label" class="property-label"><g:message code="shoppingCart.totalPrice.label" default="Total Price" /></span>
@@ -33,6 +32,13 @@
 					
 				</li>
 				</g:if>
+				<g:else>
+				<li class="fieldcontain">
+					<span id="totalPrice-label" class="property-label"><g:message code="shoppingCart.totalPrice.label" default="Total Price" /></span>
+					
+						<span class="property-value" aria-labelledby="totalPrice-label">0.0</span>
+				</li>
+				</g:else>
 			
 			</ul>
 			<g:form url="[resource:shoppingCartInstance, action:'delete']" method="DELETE">

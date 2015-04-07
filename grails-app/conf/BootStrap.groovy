@@ -1,5 +1,6 @@
 import com.store.AppUser
 import com.store.Category
+import com.store.CreditCard;
 import com.store.Manufacturer
 import com.store.Review
 import com.store.ShoppingCart
@@ -12,6 +13,7 @@ class BootStrap {
 		def user = AppUser.findOrSaveWhere(fullName:"Stephen O'Kennedy", email:"Stephenoken@gmail.com", 
 			password:"pwd")
 		def cart = ShoppingCart.findOrSaveWhere(address:"3 Clonasleigh",totalPrice:price, user:user)
+		def cC = CreditCard.findOrSaveWhere(address:"3 Clonasleigh", firstName:"Stephen",cardExpDate:"06/16",cardNumber:"4532470627137387",cardType:"Visa",county:"Dublin",lastName:"Oken",town:"shankill",user:user)
 		//Categories
 		def laptopCategory = Category.findOrSaveWhere(categoryName:"Laptops")
 		def tvCategory = Category.findOrSaveWhere(categoryName:"TVs")

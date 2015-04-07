@@ -94,7 +94,7 @@
 					<g:link controller="master" params="[cntlr:'stock',function:'edit',instanceId:stockInstance.id]" class="btn btn-info">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<g:link class="btn btn-warning" controller="stock" action="addToBasket" id="${stockInstance.id }">Purchase</g:link>
+					<g:link class="btn btn-warning" controller="stock" action="addToBasket" id="${stockInstance.id }">Add to Basket</g:link>
 					<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
