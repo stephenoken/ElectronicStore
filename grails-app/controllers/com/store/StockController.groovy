@@ -47,7 +47,6 @@ class StockController extends ControllerTemplate implements StockDAO{
             '*' { respond stockInstance, [status: CREATED] }
         }
     }
-
     def edit(Stock stockInstance) {
         respond stockInstance
     }
@@ -152,6 +151,7 @@ class StockController extends ControllerTemplate implements StockDAO{
 		}
 		render(view:'index',model:[stockInstanceList:results])
 	}
+	
 	public List<Stock> findByTitle(String criteria) {
 		return Stock.findAllByTitleIlike("%"+criteria+"%").toList();
 	}
