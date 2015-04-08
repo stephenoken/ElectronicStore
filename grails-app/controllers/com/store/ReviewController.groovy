@@ -3,11 +3,15 @@ package com.store
 
 
 import static org.springframework.http.HttpStatus.*
+
+import com.sun.jmx.snmp.UserAcl;
+
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class ReviewController {
-	def scaffold = true
+class ReviewController extends ControllerTemplate{
+	def beforeInterceptor=[action:this.&auth, except:["index", "show"]]
+	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -29,25 +33,32 @@ class ReviewController {
             notFound()
             return
         }
-
+		
         if (reviewInstance.hasErrors()) {
             respond reviewInstance.errors, view:'create'
             return
         }
-
         reviewInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])
-                redirect reviewInstance
+                redirect(action:'show',controller:'stock', id:reviewInstance.stock.id)
             }
             '*' { respond reviewInstance, [status: CREATED] }
         }
     }
 
     def edit(Review reviewInstance) {
-        respond reviewInstance
+		AppUser user = AppUser.get(session.user.id)
+		println user
+		if(user != reviewInstance.author){
+			flash.message="Sorry, you can only edit your own review"
+			 redirect(action:'show',controller:'stock', id:reviewInstance.stock.id)
+		}else{
+			respond reviewInstance
+		}
+        
     }
 
     @Transactional
@@ -67,7 +78,7 @@ class ReviewController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Review.label', default: 'Review'), reviewInstance.id])
-                redirect reviewInstance
+                redirect(action:'show',controller:'stock', id:reviewInstance.stock.id)
             }
             '*'{ respond reviewInstance, [status: OK] }
         }

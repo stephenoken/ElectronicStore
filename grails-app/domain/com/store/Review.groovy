@@ -9,6 +9,6 @@ class Review {
 		review type:"text"
 	}
     static constraints = {
-		rating( size: 0..5)
+		rating( range: 1..5)
     }
 }

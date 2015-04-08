@@ -100,19 +100,21 @@
 			</g:form>
 		</div>
 		<g:if test="${stockInstance?.reviews}">
-			<div class="row col-md-6 col-md-offset-3">
-				
+			<div class="row well bs-component col-md-6 col-md-offset-3">
 				<h1>Reviews</h1>					
-				<g:each in="${stockInstance.reviews}" var="r">
-					<div class="row well bs-component col-md-12">
+				<g:each in="${reviewInstanceList}" var="r">
+					<div class="well bs-component col-md-12">
 						<blockquote class="pull-right">
 							<p>${r.review }</p>
-							<small>Review by <cite title="Source Title">${r.author }</cite></small>
+							<small>Review by <cite title="Source Title">${r.author }</cite></small> 
+							Score <cite title="Source Title">${r.rating }/5</cite>
 						</blockquote>
+						<g:link class="pulled-left btn btn-info" action="edit" controller="review" id="${r.id }">Edit</g:link>
 						<%--<span class="property-value" aria-labelledby="reviews-label"><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>--%>
 					</div>
 				</g:each>
 			</div>
 		</g:if>
+		<g:render template="createReview"></g:render>
 	</body>
 </html>

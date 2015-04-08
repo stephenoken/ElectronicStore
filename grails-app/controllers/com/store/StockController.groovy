@@ -8,15 +8,17 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class StockController extends ControllerTemplate implements StockDAO{
 
+	def beforeInterceptor=[action:this.&auth, except:["index", "show"]]
+	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Stock.list(params), model:[stockInstanceCount: Stock.count()]
     }
 
     def show(Stock stockInstance) {
-        respond stockInstance
+        respond stockInstance, model:[reviewInstanceList:stockInstance.reviews.sort{it.id} ]
     }
 
     def create() {

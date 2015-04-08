@@ -41,8 +41,10 @@ class CreditCardController extends PaymentStrategy{
 //				c.delete flush:true
 //			}
 			cart.save flush:true
-			redirect(controller:"AppUser",action:"home")
+			
+		}else{
+		flash.message="You havn't setup your credit card"
 		}
-		
+		redirect(controller:"AppUser",action:"home")
 	}
 }

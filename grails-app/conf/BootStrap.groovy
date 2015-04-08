@@ -12,6 +12,7 @@ class BootStrap {
 		double price = 0
 		def user = AppUser.findOrSaveWhere(fullName:"Stephen O'Kennedy", email:"Stephenoken@gmail.com", 
 			password:"pwd")
+		def user2 = AppUser.findOrSaveWhere(fullName:"James Pomeroy", email:"jp@middleton.com", password:'pwd')
 		def cart = ShoppingCart.findOrSaveWhere(address:"3 Clonasleigh",totalPrice:price, user:user)
 		def cC = CreditCard.findOrSaveWhere(address:"3 Clonasleigh", firstName:"Stephen",cardExpDate:"06/16",cardNumber:"4532470627137387",cardType:"Visa",county:"Dublin",lastName:"Oken",town:"shankill",user:user)
 		//Categories
@@ -39,6 +40,7 @@ class BootStrap {
 		def lennovoDesktop = Stock.findOrSaveWhere(title:"B50", price:lennovoDesktopPrice,manufacturer:lenovoManufacturer,category:desktopCategory,stockLevel:9)
 		//Reviews
 		def review1 = Review.findOrSaveWhere(stock:macbookPro,author:user,review:"It's great",rating:5)
+		def review2 = Review.findOrSaveWhere(stock:macbookPro,author:user2,review:"Alright, I guess",rating:3)
 		
     }
     def destroy = {
