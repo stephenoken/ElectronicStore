@@ -3,9 +3,6 @@ package com.store
 
 
 import static org.springframework.http.HttpStatus.*
-
-import java.util.List;
-
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -169,4 +166,5 @@ class StockController extends ControllerTemplate implements StockDAO{
 			results.addAll(c.stocks.toList())
 		return results;
 	}
+	
 }

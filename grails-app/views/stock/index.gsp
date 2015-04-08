@@ -19,10 +19,10 @@
 					<tr>
 					
 						<g:sortableColumn property="title" title="${message(code: 'stock.title.label', default: 'Title')}" />
+						
+						<g:sortableColumn property="category" title="Category"/>
 					
-						<th><g:message code="stock.category.label" default="Category" /></th>
-					
-						<th><g:message code="stock.manufacturer.label" default="Manufacturer" /></th>
+						<g:sortableColumn property="manufacturer" title="Manufacturer"/>
 					
 						<g:sortableColumn property="price" title="${message(code: 'stock.price.label', default: 'Price')}" />
 					

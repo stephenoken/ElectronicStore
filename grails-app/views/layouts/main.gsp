@@ -44,8 +44,11 @@
 										<g:link controller="Stock">
 											Items
 										</g:link>
-	                					<g:link class="create" action="index" controller="master" params="[cntlr:'stock',function:'create']">
+	                					<g:link class="create" action="create" controller="stock">
 											New Stock Item
+										</g:link>
+										<g:link action="search" controller="stock">
+											Search for Items 
 										</g:link>
 	                					
 	                				</li>
