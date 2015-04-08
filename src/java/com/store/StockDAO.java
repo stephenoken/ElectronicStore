@@ -3,7 +3,9 @@ package com.store;
 import java.util.List;
 
 public interface StockDAO {
-	public List<Stock> findByTitle();
-	public List<Stock> findByManufacture();
-	public List<Stock> findByCategory();
+	public Object search();
+	public Object execute();
+	public List<Stock> findByTitle(String criteria);
+	public List<Stock> findByManufacture(String criteria);
+	public List<Stock> findByCategory(String criteria);
 }

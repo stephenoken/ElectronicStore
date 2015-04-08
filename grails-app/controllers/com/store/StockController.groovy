@@ -3,10 +3,13 @@ package com.store
 
 
 import static org.springframework.http.HttpStatus.*
+
+import java.util.List;
+
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class StockController {
+class StockController extends ControllerTemplate implements StockDAO{
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -125,5 +128,45 @@ class StockController {
 				flash.message = "Must be logged in to add to basket"
 				redirect (controller:"appUser",action:"login")
 		}
+	}
+
+	def search() {
+		// Will automatically render search.gsp
+	}
+
+	def execute(){
+		println params
+		String searchTerm = params.inputSearch
+		String searchType = params.searchType
+		ArrayList<Stock> results;
+		try{
+			switch(searchType){
+				case "Title": results = findByTitle(searchTerm)
+				break
+				case "Manufacturer": results = findByManufacture(searchTerm)
+				break
+				case "Category": results= findByCategory(searchTerm)
+				break
+			}
+		}catch(Exception e){
+			flash.message = "Your search yielded no results"	
+		}
+		render(view:'index',model:[stockInstanceList:results])
+	}
+	public List<Stock> findByTitle(String criteria) {
+		return Stock.findAllByTitleIlike("%"+criteria+"%").toList();
+	}
+
+	public List<Stock> findByManufacture(String criteria) {
+		Manufacturer m = Manufacturer.findByManufacturerNameIlike(criteria)
+		return m.stocks.toList();
+	}
+
+	public List<Stock> findByCategory(String criteria) {
+		ArrayList<Stock> results = new ArrayList<Stock>()
+		ArrayList<Category> categories = Category.findAllByCategoryNameIlike("%"+criteria+"%")
+		for(Category c : categories)
+			results.addAll(c.stocks.toList())
+		return results;
 	}
 }
