@@ -33,17 +33,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${stockInstance?.images}">
-				<li class="fieldcontain">
-					<span id="images-label" class="property-label"><g:message code="stock.images.label" default="Images" /></span>
-					
-						<g:each in="${stockInstance.images}" var="i">
-						<span class="property-value" aria-labelledby="images-label"><g:link controller="stockImage" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${stockInstance?.manufacturer}">
 				<li class="fieldcontain">
 					<span id="manufacturer-label" class="property-label"><g:message code="stock.manufacturer.label" default="Manufacturer" /></span>

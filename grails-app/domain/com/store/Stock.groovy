@@ -3,7 +3,7 @@ package com.store
 
 class Stock {
 	static belongsTo = [manufacturer:Manufacturer, category:Category]
-	static hasMany = [reviews:Review, purchases:CartItem, images:StockImage]
+	static hasMany = [reviews:Review, purchases:CartItem]
 	
     static constraints = {
 		title(unique:true)

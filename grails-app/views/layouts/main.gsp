@@ -74,6 +74,23 @@
 	                			</ul>
 							</li>
 							<li>
+								<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		                    		Manufacturers<b class="caret"></b>
+		                     	</a>		 	
+			                    <ul role="menu" class="dropdown-menu">
+			                        <li>
+										<g:link controller="manufacturer">
+	                						Manufacturers
+	                					</g:link>
+	                					<g:if test="${session.user?.role.equals("ROLE_ADMIN") }">
+	                					<g:link class="create" action="create" controller="manufacturer">
+											Add new Manufacturer
+										</g:link>
+										</g:if>
+	                				</li>
+	                			</ul>
+							</li>
+							<li>
 								<g:if test="${session.user?.role.equals("ROLE_ADMIN") }">
                 					<g:link controller="appUser">User Listings</g:link>
 								</g:if>
