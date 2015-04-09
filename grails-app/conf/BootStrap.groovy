@@ -14,7 +14,7 @@ class BootStrap {
 			password:"pwd",role:"ROLE_USER")
 		def user2 = AppUser.findOrSaveWhere(fullName:"James Pomeroy", email:"jp@middleton.com", password:'pwd',
 			role:"ROLE_USER")
-		def admin = AppUser.findOrSaveWhere(fullName:"Edward Grey", email:"eg@whitehall.com", password:'pwd',
+		def admin = AppUser.findOrSaveWhere(fullName:"Admin", email:"admin@admin.com", password:'pwd',
 			role:"ROLE_ADMIN")
 		def cart = ShoppingCart.findOrSaveWhere(address:"3 Clonasleigh",totalPrice:price, user:user)
 		def cC = CreditCard.findOrSaveWhere(address:"3 Clonasleigh", firstName:"Stephen",cardExpDate:"06/16",cardNumber:"4532470627137387",cardType:"Visa",county:"Dublin",lastName:"Oken",town:"shankill",user:user)

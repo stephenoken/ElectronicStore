@@ -63,10 +63,11 @@
 										<g:link controller="category">
 	                						Categories
 	                					</g:link>
+	                					<g:if test="${session.user?.role.equals("ROLE_ADMIN") }">
 	                					<g:link class="create" action="create" controller="category">
 											Add new Category
 										</g:link>
-	                					
+										</g:if>
 	                				</li>
 	                			</ul>
 							</li>
