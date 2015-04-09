@@ -3,7 +3,7 @@ package com.store
 class LoggingFilters {
 
     def filters = {
-        adminStockAccess(controller:'stock|category', action:'edit|create|delete') {
+        adminStockAccess(controller:'stock|category', action:'edit|create|delete|update') {
             before = {
 				if(!(session.user?.role.equals("ROLE_ADMIN"))){
 					flash.message="You must be signed in as an Admin"

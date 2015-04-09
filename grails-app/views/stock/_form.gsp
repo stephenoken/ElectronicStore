@@ -20,24 +20,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'images', 'error')} ">
-	<label for="images">
-		<g:message code="stock.images.label" default="Images" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${stockInstance?.images?}" var="i">
-    <li><g:link controller="stockImage" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="stockImage" action="create" params="['stock.id': stockInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'stockImage.label', default: 'StockImage')])}</g:link>
-</li>
-</ul>
-
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'manufacturer', 'error')} required">
 	<label for="manufacturer">
 		<g:message code="stock.manufacturer.label" default="Manufacturer" />
@@ -52,52 +34,26 @@
 		<g:message code="stock.price.label" default="Price" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="price" value="${fieldValue(bean: stockInstance, field: 'price')}" required=""/>
+	<g:field name="price" value="${fieldValue(bean: stockInstance, field: 'price')}" type="number" required=""/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'purchases', 'error')} ">
-	<label for="purchases">
-		<g:message code="stock.purchases.label" default="Purchases" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${stockInstance?.purchases?}" var="p">
-    <li><g:link controller="cartItem" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="cartItem" action="create" params="['stock.id': stockInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'cartItem.label', default: 'CartItem')])}</g:link>
-</li>
-</ul>
 
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'reviews', 'error')} ">
-	<label for="reviews">
-		<g:message code="stock.reviews.label" default="Reviews" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${stockInstance?.reviews?}" var="r">
-    <li><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="review" action="create" params="['stock.id': stockInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'review.label', default: 'Review')])}</g:link>
-</li>
-</ul>
-
-
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'stockLevel', 'error')} required">
 	<label for="stockLevel">
 		<g:message code="stock.stockLevel.label" default="Stock Level" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="stockLevel" type="number" value="" required=""/>
+	<g:field name="stockLevel" type="number" value="${fieldValue(bean: stockInstance, field: 'stockLevel')}" required=""/>
 
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'associatedImage', 'error')} required">
+	<label for="associatedImage">
+		<g:message code="stock.associatedImage.label" default="Associated Image" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="imageFile" type="file" value="${fieldValue(bean: stockInstance, field: 'associatedImage')}" required="" accept="image/*"/>
 </div>
 

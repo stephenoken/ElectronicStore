@@ -34,7 +34,7 @@ class BootStrap {
 		double iMacPrice = 2000
 		double samsungDesktopPrice = 1200
 		double lennovoDesktopPrice = 1000
-		def macbookPro = Stock.findOrSaveWhere(title:"Macbook pro", price:macbookProPrice,manufacturer:appleManufacturer,category:laptopCategory,stockLevel:0)
+		def macbookPro = Stock.findOrSaveWhere(title:"Macbook pro", price:macbookProPrice,manufacturer:appleManufacturer,category:laptopCategory,stockLevel:0,associatedImage:"/Users/stephenokennedy/dev/Branch/ElectronicStore/web-app/associatedImages/1.png")
 		def thinPad = Stock.findOrSaveWhere(title:"T-351", price:thinPadPrice,manufacturer:lenovoManufacturer,category:laptopCategory,stockLevel:2)
 		def samsungTV = Stock.findOrSaveWhere(title:"48\" H8000 Series 8 Smart 3D Curved Full HD LED TV", price:samsungTVPrice,manufacturer:samsungManufacturer,category:tvCategory,stockLevel:5)
 		def appleTV = Stock.findOrSaveWhere(title:"Apple TV", price:appleTVPrice,manufacturer:appleManufacturer,category:tvCategory,stockLevel:4)

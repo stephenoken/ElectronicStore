@@ -72,7 +72,11 @@
 					
 				</li>
 				</g:if>
-			
+				<g:if test="${stockInstance.associatedImage }">
+				<li>
+					<img src="${resource(dir:'associatedImages', file: stockInstance.id + '.png')}" />
+				</li>
+				</g:if>
 				<g:if test="${stockInstance?.stockLevel}">
 				<li class="fieldcontain">
 					<span id="stockLevel-label" class="property-label"><g:message code="stock.stockLevel.label" default="Stock Level" /></span>

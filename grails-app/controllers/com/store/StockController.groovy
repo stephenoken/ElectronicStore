@@ -5,10 +5,11 @@ package com.store
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
-class StockController extends ControllerTemplate implements StockDAO{
+import org.springframework.web.multipart.MultipartRequest
 
-	def beforeInterceptor=[action:this.&auth, except:["index", "show"]]
+@Transactional(readOnly = true)
+class StockController implements StockDAO{
+	FileUploadService fileUploadService = new FileUploadService()
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
@@ -27,18 +28,22 @@ class StockController extends ControllerTemplate implements StockDAO{
 
     @Transactional
     def save(Stock stockInstance) {
+		println params
         if (stockInstance == null) {
             notFound()
             return
         }
-
+//		stockInstance.associatedImage = "${stockInstance.id}.png" 
         if (stockInstance.hasErrors()) {
             respond stockInstance.errors, view:'create'
             return
         }
-
         stockInstance.save flush:true
-
+		def associatedImage = request.getFile('imageFile')
+		println associatedImage
+		if(!associatedImage.isEmpty()){
+			stockInstance.associatedImage = fileUploadService.uploadFile(associatedImage, "${stockInstance.id}.png", "associatedImages")
+		}
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'stock.label', default: 'Stock'), stockInstance.id])
@@ -62,9 +67,13 @@ class StockController extends ControllerTemplate implements StockDAO{
             respond stockInstance.errors, view:'edit'
             return
         }
-
+		println "Hello"
         stockInstance.save flush:true
-
+		def associatedImage = request.getFile('imageFile')
+		println associatedImage
+		if(!associatedImage.isEmpty()){
+			stockInstance.associatedImage = fileUploadService.uploadFile(associatedImage, "${stockInstance.id}.png", "associatedImages")
+		}
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Stock.label', default: 'Stock'), stockInstance.id])

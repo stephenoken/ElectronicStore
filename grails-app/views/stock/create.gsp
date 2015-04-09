@@ -18,7 +18,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:stockInstance, action:'save' ,controller:'stock']" >
+			<g:form url="[resource:stockInstance, action:'save' ,controller:'stock']" enctype="multipart/form-data">
 				<fieldset class="form">
 					<g:render template="../stock/form"/>
 				</fieldset>

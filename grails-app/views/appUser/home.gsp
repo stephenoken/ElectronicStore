@@ -74,5 +74,6 @@
 			</g:else>
 		</div>
 	</div>
+	<input name="file" type="file" accept="image/*"/>
 </body>
 </html>
