@@ -5,4 +5,5 @@ class CartItem {
     static constraints = {
     }
 	double itemPrice
+	boolean hasBought;
 }

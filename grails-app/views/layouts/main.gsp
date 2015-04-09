@@ -44,9 +44,11 @@
 										<g:link controller="Stock">
 											Items
 										</g:link>
+										<g:if test="${session.user?.role.equals("ROLE_ADMIN") }">
 	                					<g:link class="create" action="create" controller="stock">
 											New Stock Item
 										</g:link>
+										</g:if>
 										<g:link action="search" controller="stock">
 											Search for Items 
 										</g:link>
@@ -71,10 +73,17 @@
 	                				</li>
 	                			</ul>
 							</li>
+							<li>
+								<g:if test="${session.user?.role.equals("ROLE_ADMIN") }">
+                					<g:link controller="appUser">User Listings</g:link>
+								</g:if>
+							</li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li>
+								<g:if test="${session.user?.role.equals("ROLE_USER") }">
 								<g:link controller="appUser" action="home">Home</g:link>
+								</g:if>
 							</li>
 							<li>
 								<div class="login-control">

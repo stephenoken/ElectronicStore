@@ -25,15 +25,17 @@
 			<g:render template="showCart"></g:render>
 		</g:if>
 		<g:else>
-			<div class="well bs-component col-md-4 col-md-offset-1">
-				<g:form action="create" controller="shoppingCart" >
-					<fieldset class="form">
-						<g:render template="/shoppingCart/form"/>
-					</fieldset>
-					<fieldset class="buttons">
-						<g:submitButton name="create" class="btn btn-warning" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-					</fieldset>
-				</g:form>
+			<div class="row col-md-4 col-md-offset-1">
+				<div class="well bs-component col-md-12">
+					<g:form action="create" controller="shoppingCart" >
+						<fieldset class="form">
+							<g:render template="/shoppingCart/form"/>
+						</fieldset>
+						<fieldset class="buttons">
+							<g:submitButton name="create" class="btn btn-warning" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+						</fieldset>
+					</g:form>
+				</div>
 			</div>
 		</g:else>
 		<div class="col-md-4 col-md-offset-1">

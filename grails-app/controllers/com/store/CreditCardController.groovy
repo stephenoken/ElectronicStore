@@ -32,14 +32,10 @@ class CreditCardController extends PaymentStrategy{
 		if(card !=null){
 			flash.message="Basket costing €" + cart.totalPrice + " has been bought by credit card " + card.cardNumber
 			cart.totalPrice = 0
-//			for(CartItem c:cart.items){
-//				def item = c.stock
-//				def shoppingCart = c.shoppingCart
-//				println item
-//				item.discard()
-//				shoppingCart.discard()
-//				c.delete flush:true
-//			}
+			for(CartItem c:cart.items){
+				c.hasBought = true
+				c.save flush:true
+			}
 			cart.save flush:true
 			
 		}else{

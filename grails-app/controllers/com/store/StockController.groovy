@@ -106,11 +106,9 @@ class StockController extends ControllerTemplate implements StockDAO{
 		if(session.user !=null){
 			println session.user
 			AppUser  user = AppUser.get(session.user.id)
-			println user.shoppingCarts
 			ShoppingCart sct = user.shoppingCarts.getAt(0)
-			println sct
 			if(stockInstance.stockLevel > 0){
-				CartItem ct = new CartItem(stock:stockInstance,shoppingCart:sct)
+				CartItem ct = new CartItem(stock:stockInstance,shoppingCart:sct,hasBought:false)
 				ct.save flush:true
 				stockInstance.stockLevel --
 				stockInstance.save flush:true
