@@ -49,6 +49,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'discount', 'error')} required">
+	<label for="stockLevel">
+		<g:message code="stock.discount.label" default="Discount" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="discount" type="number" value="${fieldValue(bean: stockInstance, field: 'discount')}" required=""/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: stockInstance, field: 'associatedImage', 'error')} required">
 	<label for="associatedImage">
 		<g:message code="stock.associatedImage.label" default="Associated Image" />

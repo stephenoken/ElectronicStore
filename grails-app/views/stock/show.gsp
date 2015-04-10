@@ -50,17 +50,6 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${stockInstance?.purchases}">
-				<li class="fieldcontain">
-					<span id="purchases-label" class="property-label"><g:message code="stock.purchases.label" default="Purchases" /></span>
-					
-						<g:each in="${stockInstance.purchases}" var="p">
-						<span class="property-value" aria-labelledby="purchases-label"><g:link controller="cartItem" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
 				<g:if test="${stockInstance.associatedImage }">
 				<li>
 					<img src="${resource(dir:'associatedImages', file: stockInstance.id + '.png')}" />
@@ -80,6 +69,14 @@
 						<span class="property-value" aria-labelledby="stockLevel-label"> Not in stock</span>
 					</li>
 				</g:else>
+				<g:if test="${stockInstance?.discount }">
+					<li class="fieldcontain">
+						<span id="discount-label" class="property-label"><g:message code="stock.discount.label" default="Discount" /></span>
+					
+						<span class="property-value" aria-labelledby="discount-label"><g:fieldValue bean="${stockInstance}" field="discount"/></span>
+					
+					</li>
+				</g:if>
 			
 			</ol>
 			<g:form url="[resource:stockInstance, action:'delete']" method="DELETE">

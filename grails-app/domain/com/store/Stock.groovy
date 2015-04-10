@@ -15,6 +15,7 @@ class Stock {
 	String associatedImage;
 	double price;
 	int stockLevel; 
+	double discount
 //	byte[] filePayload
 	
 	String toString(){

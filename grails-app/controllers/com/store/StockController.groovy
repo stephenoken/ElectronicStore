@@ -69,11 +69,11 @@ class StockController implements StockDAO{
         }
 		println "Hello"
         stockInstance.save flush:true
-		def associatedImage = request.getFile('imageFile')
-		println associatedImage
-		if(!associatedImage.isEmpty()){
-			stockInstance.associatedImage = fileUploadService.uploadFile(associatedImage, "${stockInstance.id}.png", "associatedImages")
-		}
+//		def associatedImage = request.getFile('imageFile')
+//		println associatedImage
+//		if(!associatedImage.isEmpty()){
+//			stockInstance.associatedImage = fileUploadService.uploadFile(associatedImage, "${stockInstance.id}.png", "associatedImages")
+//		}
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Stock.label', default: 'Stock'), stockInstance.id])
@@ -117,11 +117,17 @@ class StockController implements StockDAO{
 			AppUser  user = AppUser.get(session.user.id)
 			ShoppingCart sct = user.shoppingCarts.getAt(0)
 			if(stockInstance.stockLevel > 0){
-				CartItem ct = new CartItem(stock:stockInstance,shoppingCart:sct,hasBought:false)
+				Discount sales = new SalesDiscount()
+				Discount loyalty = new LoyaltyDiscount()
+				double itemPrice = loyalty.applyDiscount(stockInstance,user)
+				if(stockInstance.discount)
+					itemPrice = sales.applyDiscount(stockInstance,user)
+				println itemPrice
+				CartItem ct = new CartItem(stock:stockInstance,shoppingCart:sct,hasBought:false,itemPrice:itemPrice)
 				ct.save flush:true
 				stockInstance.stockLevel --
 				stockInstance.save flush:true
-				sct.totalPrice += stockInstance.price
+				sct.totalPrice += ct.itemPrice
 				sct.save flush:true
 				flash.message = "Item added to your cart"
 				redirect (controller:"appUser",action:"home")
