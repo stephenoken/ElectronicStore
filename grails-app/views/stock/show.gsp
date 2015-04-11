@@ -8,21 +8,23 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
+		<g:if test="${flash.message }">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-info ">
+					<div class="panel-heading">
+				        <h3 class="panel-title">Notification</h3>
+				    </div>
+				    <div class="panel-body">
+				        ${flash.message }
+				    </div>
+				</div>
+			</div>
+		</div>
+		</g:if>	
 		<div id="show-stock" class="row well bs-component col-md-6 col-md-offset-3" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
+			<h1><g:fieldValue bean="${stockInstance}" field="title"/></h1>
 			<ol class="property-list stock">
-			
-				<g:if test="${stockInstance?.title}">
-				<li class="fieldcontain">
-					<span id="title-label" class="property-label"><g:message code="stock.title.label" default="Title" /></span>
-					
-						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${stockInstance}" field="title"/></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${stockInstance?.category}">
 				<li class="fieldcontain">
@@ -79,15 +81,20 @@
 				</g:if>
 			
 			</ol>
+			<g:if test="${session.user?.role.equals("ROLE_USER") }">
+			<g:link class="btn btn-warning" controller="stock" action="addToBasket" id="${stockInstance.id }">Add to Basket</g:link>
+			</g:if>
+			<g:if test="${session.user?.role.equals("ROLE_ADMIN") }">
 			<g:form url="[resource:stockInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link action="edit" id="${stockInstance.id }" class="btn btn-info">
 						<g:message code="default.button.edit.label" default="Edit" />
 					</g:link>
-					<g:link class="btn btn-warning" controller="stock" action="addToBasket" id="${stockInstance.id }">Add to Basket</g:link>
+					
 					<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
+			</g:if>
 		</div>
 		<g:if test="${stockInstance?.reviews}">
 			<div class="row well bs-component col-md-6 col-md-offset-3">
@@ -100,11 +107,13 @@
 							Score <cite title="Source Title">${r.rating }/5</cite>
 						</blockquote>
 						<div class="btn-group-vertical">
+							<g:if test="${session.user?.role.equals("ROLE_USER")}">
 							<g:link class="pulled-left btn btn-info" action="edit" controller="review" id="${r.id }">Edit</g:link>
 							<g:form controller="review" action="delete" id="${r.id }" method="DELETE">
 								<g:hiddenField name="stockId" value="${ stockInstance.id}"/>
 								<g:actionSubmit class="pulled-left btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 							</g:form>
+							</g:if>
 						</div>
 						<%--<span class="property-value" aria-labelledby="reviews-label"><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>--%>
 					</div>
