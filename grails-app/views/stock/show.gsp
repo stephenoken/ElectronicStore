@@ -99,7 +99,13 @@
 							<small>Review by <cite title="Source Title">${r.author }</cite></small> 
 							Score <cite title="Source Title">${r.rating }/5</cite>
 						</blockquote>
-						<g:link class="pulled-left btn btn-info" action="edit" controller="review" id="${r.id }">Edit</g:link>
+						<div class="btn-group-vertical">
+							<g:link class="pulled-left btn btn-info" action="edit" controller="review" id="${r.id }">Edit</g:link>
+							<g:form controller="review" action="delete" id="${r.id }" method="DELETE">
+								<g:hiddenField name="stockId" value="${ stockInstance.id}"/>
+								<g:actionSubmit class="pulled-left btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+							</g:form>
+						</div>
 						<%--<span class="property-value" aria-labelledby="reviews-label"><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>--%>
 					</div>
 				</g:each>

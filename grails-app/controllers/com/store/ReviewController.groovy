@@ -86,7 +86,12 @@ class ReviewController extends ControllerTemplate{
 
     @Transactional
     def delete(Review reviewInstance) {
-
+		AppUser user = AppUser.get(session.user.id)
+		if(user != reviewInstance.author){
+			flash.message="Sorry, you can only delete your own review"
+			 redirect(action:'show',controller:'stock', id:reviewInstance.stock.id)
+			 return 
+		}
         if (reviewInstance == null) {
             notFound()
             return
@@ -97,7 +102,7 @@ class ReviewController extends ControllerTemplate{
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Review.label', default: 'Review'), reviewInstance.id])
-                redirect action:"index", method:"GET"
+				redirect(action:'show',controller:'stock', id:params.stockId)
             }
             '*'{ render status: NO_CONTENT }
         }
