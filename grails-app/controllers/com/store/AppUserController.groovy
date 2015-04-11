@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 
 class AppUserController{
 	def scaffold = AppUser
-	def beforeInterceptor=[action:this.&auth,except:["login","authenticate","logout","create","save"]] 
+//	def beforeInterceptor=[action:this.&auth,except:["login","authenticate","logout","create","save"]] 
 	def login(){}
 	
 	def authenticate(){
@@ -28,9 +28,13 @@ class AppUserController{
 	}
 	
 	def home(){
+		if(session.user){
 		AppUser user = AppUser.get(session.user.id)
 		render (view:"home.gsp", model:[userInstance:user,shoppingCartInstance:user.shoppingCarts[0],
 			creditCardInstance:user.creditCards[0],payPalInstance:user.paypalAccounts[0]])
+		}
+		else
+		redirect(controller:'appUser', action:'login')
 	}
 	
 	def auth(){
