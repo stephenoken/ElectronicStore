@@ -26,6 +26,10 @@ class PayPalController extends PaymentStrategy{
 		if(pp !=null){
 			flash.message="Basket costing €" + cart.totalPrice + " has been bought by PayPal =" + pp.emailId
 			cart.totalPrice = 0;
+			for(CartItem c:cart.items){
+				c.hasBought = true
+				c.save flush:true
+			}
 			cart.save flush:true
 		}
 		redirect(controller:"AppUser",action:"home")

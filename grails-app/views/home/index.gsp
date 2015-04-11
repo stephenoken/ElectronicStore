@@ -1,26 +1,14 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+		<title>Electronic Store</title>
 	</head>
 	<body>
-		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
-
-			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
-				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
-				</ul>
-			</div>
-			<a href="showCategory/id=laptops">Show Laptop</a>
-			<a href="stock-index=">Visit Store</a>
+		<div  class="well bs-component col-md-10 col-md-offset-1 " role="main">
+			<h1>Welcome to Electronic Store</h1>
+			<p>This online store sells random things you may want at extortionate prices</p>
+			<p>If this is your first time visiting the site you may wish to create an account an enjoy the most marginal savings on the net.</p>
+			<g:link controller="AppUser" action="Create" class="btn btn-warning">Register</g:link>
 		</div>
 	</body>
 </html>

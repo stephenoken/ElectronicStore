@@ -112,9 +112,12 @@ class StockController implements StockDAO{
         }
     }
 	def addToBasket(Stock stockInstance){
-		if(session.user !=null){
-			println session.user
+		if(session.user){
 			AppUser  user = AppUser.get(session.user.id)
+			if((user.creditCards.empty||user.paypalAccounts) && user.shoppingCarts.empty){
+				flash.message = "User account setup not yet completed"
+				redirect (controller:"appUser",action:"login")
+			}
 			ShoppingCart sct = user.shoppingCarts.getAt(0)
 			if(stockInstance.stockLevel > 0){
 				Discount sales = new SalesDiscount()

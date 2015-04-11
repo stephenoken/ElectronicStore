@@ -6,15 +6,13 @@ class LoyaltyDiscount extends Discount {
 	public double discount() {
 		boolean applyDiscount;
 		double discount = 0.05
-		for(CartItem c: user.shoppingCarts[0].items){
+		for(CartItem c: user.shoppingCarts[0]?.items){
 			if(c.hasBought){
+				println c.hasBought
 				applyDiscount =true
 			}
 		}
-		if(applyDiscount)
-		return stockInstance.price*(1-discount);
-		else
-		return stockInstance.price;
+		return (applyDiscount)?stockInstance.price*(1-discount):stockInstance.price;
 	}
 
 }
