@@ -1,5 +1,9 @@
 package com.store
 
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+
 class AppUserController{
 	def scaffold = AppUser
 	def beforeInterceptor=[action:this.&auth,except:["login","authenticate","logout","create","save"]] 
@@ -44,5 +48,21 @@ class AppUserController{
 		if(paymentParam.equalsIgnoreCase("payPal"))
 			payment = new PayPalController()
 		payment.pay()
+	}
+	@Transactional
+	def save(AppUser appUserInstance){
+		if(appUserInstance.hasErrors()){
+			respond appUserInstance.errors, view:'create'
+			return 
+		}
+		appUserInstance.role = "ROLE_USER"
+		appUserInstance.save flush:true
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'appUser.label', default: 'User'), appUserInstance.id])
+				redirect(action:'home')
+			}
+			'*' { respond appUserInstance, [status: CREATED] }
+		}
 	}
 }

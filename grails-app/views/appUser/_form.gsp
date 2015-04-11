@@ -29,6 +29,7 @@
 
 </div>
 
+<g:if test="${session.user?.role?.equals("ROLE_ADMIN") }">
 <div class="fieldcontain ${hasErrors(bean: appUserInstance, field: 'role', 'error')} required">
 	<label for="role">
 		<g:message code="appUser.role.label" default="Role" />
@@ -37,4 +38,4 @@
 	<g:select name="role" from="${appUserInstance.constraints.role.inList}" required="" value="${appUserInstance?.role}" valueMessagePrefix="appUser.role"/>
 
 </div>
-
+</g:if>

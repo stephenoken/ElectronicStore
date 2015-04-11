@@ -5,6 +5,7 @@
 		<g:else>
 			<div class="row col-md-4 col-md-offset-1">
 				<div class="well bs-component col-md-12">
+					<h1>New Shopping Cart</h1>
 					<g:form action="create" controller="shoppingCart" >
 						<fieldset class="form">
 							<g:render template="/shoppingCart/form"/>

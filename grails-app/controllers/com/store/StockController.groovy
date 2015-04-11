@@ -28,7 +28,6 @@ class StockController implements StockDAO{
 
     @Transactional
     def save(Stock stockInstance) {
-		println params
         if (stockInstance == null) {
             notFound()
             return
